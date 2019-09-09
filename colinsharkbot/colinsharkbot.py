@@ -4,7 +4,7 @@ from loguru import logger
 from pyrogram import Client
 
 
-class TGbot(Client):
+class ColinSharkBot(Client):
     def __init__(self):
         name = self.__class__.__name__.lower()
         config_file = f"{name}.ini"
