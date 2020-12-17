@@ -13,7 +13,7 @@ class ColinSharkBot(Client):
             workers=8,
             workdir=".",
             config_file=f"{name}.ini",
-            plugins=dict(root=f"{name}/plugins"),
+            plugins=dict(root=f"{name}.plugins", exclude=["welcome"]),
         )
 
     def start(self):
