@@ -20,6 +20,8 @@ TEXT = dedent("""
 @ColinSharkBot.on_message(filters.command("mc", "#"))
 def minecraft(bot: ColinSharkBot, message: Message):
     address = message.command[1] if len(message.command) > 1 else "pyrogram.org"
+    reply = message.reply_text(f"`Looking up {address}`")
+
     r = requests.get(API + address)
     try:
         r.raise_for_status()
@@ -27,10 +29,12 @@ def minecraft(bot: ColinSharkBot, message: Message):
         message.edit(message.text + "\n" + e)
         return
     r = r.json()
+
     if r["online"] == False:
         message.reply(f"Server `{address}` is either invalid or offline.")
         return
-    message.reply_text(
+
+    reply.edit_text(
         TEXT.format(
             address=address,
             version=r["version"],
