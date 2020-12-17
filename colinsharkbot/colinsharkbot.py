@@ -7,17 +7,12 @@ from pyrogram import Client
 class ColinSharkBot(Client):
     def __init__(self):
         name = self.__class__.__name__.lower()
-        config_file = f"{name}.ini"
-
-        config = ConfigParser()
-        config.read(config_file)
 
         super().__init__(
             session_name=name,
-            bot_token=config.get(name, "bot_token"),
             workers=8,
             workdir=".",
-            config_file=config_file,
+            config_file=f"{name}.ini",
             plugins=dict(root=f"{name}/plugins"),
         )
 
