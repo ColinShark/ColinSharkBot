@@ -31,7 +31,7 @@ def minecraft(bot: ColinSharkBot, message: Message):
     r = r.json()
 
     if r["online"] == False:
-        message.reply(f"Server `{address}` is either invalid or offline.")
+        reply.edit_text(f"Server `{address}` is either invalid or offline.")
         return
 
     reply.edit_text(
